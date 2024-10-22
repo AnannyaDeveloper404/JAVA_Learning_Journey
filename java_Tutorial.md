@@ -859,8 +859,3 @@ public class Main {
 - Use `private` to hide variables from direct access.
 - Use `get` and `set` methods to control access and modification of private variables.
 - Encapsulation provides control, flexibility, and security.
-
-```
-
-You can save this as a `.md` file for quick reference!
-```
