@@ -234,7 +234,7 @@ Procedural programming focuses on writing methods or procedures that perform ope
 
 ---
 
-# Java - What are Classes and Objects?
+## Java - What are Classes and Objects?
 
 **Classes** and **Objects** are the core aspects of object-oriented programming.
 
@@ -274,7 +274,7 @@ Car
 
 ---
 
-# Exercise
+## Exercise
 
 What does OOP stand for?
 
@@ -295,3 +295,572 @@ What does OOP stand for?
 | **Encapsulation** | Bundling of data with methods that operate on that data.                      |
 | **Polymorphism**  | The ability to process objects differently based on their data type or class. |
 | **Abstraction**   | Hiding complex implementation details and showing only essential features.    |
+
+## Java Class Attributes Cheatsheet
+
+### Class Attributes
+
+- Class attributes are variables defined within a class.
+- **Example**: Create a class with two attributes `x` and `y`:
+  ```java
+  public class Main {
+    int x = 5;
+    int y = 3;
+  }
+  ```
+- Class attributes are also known as **fields**.
+
+### Accessing Attributes
+
+- To access attributes, create an object of the class and use **dot syntax (.):**
+
+  **Example**: Create an object `myObj` and access the value of `x`:
+
+  ```java
+  public class Main {
+    int x = 5;
+
+    public static void main(String[] args) {
+      Main myObj = new Main();
+      System.out.println(myObj.x);  // Outputs 5
+    }
+  }
+  ```
+
+### Modifying Attributes
+
+- You can modify attribute values.
+
+  **Example**: Set the value of `x` to 40:
+
+  ```java
+  public class Main {
+    int x;
+
+    public static void main(String[] args) {
+      Main myObj = new Main();
+      myObj.x = 40;
+      System.out.println(myObj.x);  // Outputs 40
+    }
+  }
+  ```
+
+- You can also override existing values.
+
+  **Example**: Change the value of `x` to 25:
+
+  ```java
+  public class Main {
+    int x = 10;
+
+    public static void main(String[] args) {
+      Main myObj = new Main();
+      myObj.x = 25;  // x is now 25
+      System.out.println(myObj.x);  // Outputs 25
+    }
+  }
+  ```
+
+### Using `final` Keyword
+
+- If you don’t want to allow changes to an attribute, use the `final` keyword.
+
+  **Example**: Declaring `x` as final:
+
+  ```java
+  public class Main {
+    final int x = 10;
+
+    public static void main(String[] args) {
+      Main myObj = new Main();
+      myObj.x = 25;  // Will generate an error: cannot assign a value to a final variable
+      System.out.println(myObj.x);
+    }
+  }
+  ```
+
+- `final` variables always store the same value (e.g., `PI = 3.14159...`).
+
+### Multiple Objects
+
+- You can create multiple objects of the same class, each having independent attribute values.
+
+  **Example**: Change `x` in `myObj2` while leaving `myObj1` unchanged:
+
+  ```java
+  public class Main {
+    int x = 5;
+
+    public static void main(String[] args) {
+      Main myObj1 = new Main();  // Object 1
+      Main myObj2 = new Main();  // Object 2
+      myObj2.x = 25;
+      System.out.println(myObj1.x);  // Outputs 5
+      System.out.println(myObj2.x);  // Outputs 25
+    }
+  }
+  ```
+
+## Java Class Methods Cheatsheet
+
+### Declaring Methods
+
+- Methods are declared within a class to perform actions.
+
+  **Example**: Create a method `myMethod()` in the `Main` class:
+
+  ```java
+  public class Main {
+    static void myMethod() {
+      System.out.println("Hello World!");
+    }
+  }
+  ```
+
+### Calling Methods
+
+- To call a method, use the method name followed by parentheses `()` and a semicolon `;`.
+
+  **Example**: Call `myMethod()` inside `main`:
+
+  ```java
+  public class Main {
+    static void myMethod() {
+      System.out.println("Hello World!");
+    }
+
+    public static void main(String[] args) {
+      myMethod();  // Outputs: Hello World!
+    }
+  }
+  ```
+
+### Static vs. Public Methods
+
+- **Static Methods**: Can be called without creating an object.
+- **Public Methods**: Must be called using an object.
+
+  **Example**:
+
+  ```java
+  public class Main {
+    // Static method
+    static void myStaticMethod() {
+      System.out.println("Static methods can be called without creating objects");
+    }
+
+    // Public method
+    public void myPublicMethod() {
+      System.out.println("Public methods must be called by creating objects");
+    }
+
+    public static void main(String[] args) {
+      myStaticMethod();  // Call static method directly
+
+      Main myObj = new Main();  // Create an object
+      myObj.myPublicMethod();   // Call public method on the object
+    }
+  }
+  ```
+
+### Accessing Methods with an Object
+
+- Create an object to call methods.
+
+  **Example**: Create a `Car` object and call methods:
+
+  ```java
+  public class Main {
+    // Method with no parameters
+    public void fullThrottle() {
+      System.out.println("The car is going as fast as it can!");
+    }
+
+    // Method with a parameter
+    public void speed(int maxSpeed) {
+      System.out.println("Max speed is: " + maxSpeed);
+    }
+
+    public static void main(String[] args) {
+      Main myCar = new Main();  // Create an object
+      myCar.fullThrottle();     // Call method
+      myCar.speed(200);         // Call method with parameter
+    }
+  }
+  ```
+
+  **Output**:
+
+  ```
+  The car is going as fast as it can!
+  Max speed is: 200
+  ```
+
+### Using Multiple Classes
+
+- It’s a good practice to create an object of one class and access it in another class.
+
+  **Example**:
+
+  - **Main.java**:
+
+  ```java
+  public class Main {
+    public void fullThrottle() {
+      System.out.println("The car is going as fast as it can!");
+    }
+
+    public void speed(int maxSpeed) {
+      System.out.println("Max speed is: " + maxSpeed);
+    }
+  }
+  ```
+
+  - **Second.java**:
+
+  ```java
+  class Second {
+    public static void main(String[] args) {
+      Main myCar = new Main();  // Create an object of Main
+      myCar.fullThrottle();     // Call method
+      myCar.speed(200);         // Call method with parameter
+    }
+  }
+  ```
+
+  **Compilation and Running**:
+
+  ```bash
+  javac Main.java
+  javac Second.java
+  java Second
+  ```
+
+  **Output**:
+
+  ```
+  The car is going as fast as it can!
+  Max speed is: 200
+  ```
+
+### Key Points
+
+- **Static methods** can be called directly without an object.
+- **Public methods** require an object to be called.
+- Use the dot `.` operator to access methods and attributes from an object.
+
+## Java Constructors Cheatsheet
+
+### What is a Constructor?
+
+- A constructor in Java is a special method used to initialize objects.
+- It is called when an object of a class is created.
+- A constructor can be used to set initial values for object attributes.
+
+  **Example**: Creating a constructor:
+
+  ```java
+  public class Main {
+    int x;  // Class attribute
+
+    // Constructor for the Main class
+    public Main() {
+      x = 5;  // Set initial value for x
+    }
+
+    public static void main(String[] args) {
+      Main myObj = new Main();  // Create an object (calls the constructor)
+      System.out.println(myObj.x);  // Outputs 5
+    }
+  }
+  ```
+
+### Constructor Key Points
+
+- Constructor **name** must match the **class name**.
+- Constructor **cannot** have a return type (not even `void`).
+- **Automatically called** when an object is created.
+- Java provides a **default constructor** if you don't create one, but it won't initialize attributes.
+
+### Constructor with Parameters
+
+- Constructors can take parameters to initialize object attributes.
+
+  **Example**: Constructor with a parameter:
+
+  ```java
+  public class Main {
+    int x;
+
+    // Constructor with parameter
+    public Main(int y) {
+      x = y;
+    }
+
+    public static void main(String[] args) {
+      Main myObj = new Main(5);  // Pass value 5 to constructor
+      System.out.println(myObj.x);  // Outputs 5
+    }
+  }
+  ```
+
+- You can add **multiple parameters**.
+
+  **Example**: Constructor with multiple parameters:
+
+  ```java
+  public class Main {
+    int modelYear;
+    String modelName;
+
+    // Constructor with multiple parameters
+    public Main(int year, String name) {
+      modelYear = year;
+      modelName = name;
+    }
+
+    public static void main(String[] args) {
+      Main myCar = new Main(1969, "Mustang");
+      System.out.println(myCar.modelYear + " " + myCar.modelName);  // Outputs 1969 Mustang
+    }
+  }
+  ```
+
+### Key Points to Remember:
+
+- Constructors **initialize** the state of an object.
+- A **no-argument constructor** is the default constructor.
+- Constructors can have **parameters** to set initial values during object creation.
+  Here’s a cheatsheet for Java Modifiers in markdown format:
+
+## Java Modifiers Cheatsheet
+
+### Modifiers Overview
+
+Modifiers in Java are used to set the **access level** for classes, attributes, methods, and constructors.
+
+#### Types of Modifiers:
+
+1. **Access Modifiers** - Control access levels.
+2. **Non-Access Modifiers** - Provide other functionalities (but don't control access levels).
+
+---
+
+### 1. Access Modifiers
+
+#### For Classes:
+
+| Modifier  | Description                                                                    |
+| --------- | ------------------------------------------------------------------------------ |
+| `public`  | Class is accessible by any other class.                                        |
+| `default` | Class is accessible only by classes in the same package (no keyword required). |
+
+#### For Attributes, Methods, and Constructors:
+
+| Modifier    | Description                                       |
+| ----------- | ------------------------------------------------- |
+| `public`    | Accessible by all classes.                        |
+| `private`   | Accessible only within the declared class.        |
+| `default`   | Accessible within the same package.               |
+| `protected` | Accessible in the same package and by subclasses. |
+
+---
+
+### 2. Non-Access Modifiers
+
+#### For Classes:
+
+| Modifier   | Description                                       |
+| ---------- | ------------------------------------------------- |
+| `final`    | Class cannot be inherited.                        |
+| `abstract` | Class cannot be instantiated (must be inherited). |
+
+#### For Attributes and Methods:
+
+| Modifier       | Description                                                                             |
+| -------------- | --------------------------------------------------------------------------------------- |
+| `final`        | Cannot be overridden/modified.                                                          |
+| `static`       | Belongs to the class rather than an object.                                             |
+| `abstract`     | Must be used in an abstract class, does not have a body (e.g., `abstract void run();`). |
+| `transient`    | Skips attributes when serializing objects.                                              |
+| `synchronized` | Method can only be accessed by one thread at a time.                                    |
+| `volatile`     | Value is always read from main memory, not cached locally.                              |
+
+---
+
+### 3. Examples of Non-Access Modifiers
+
+#### `final` Modifier
+
+- Prevents modification of attributes or methods.
+
+```java
+public class Main {
+  final int x = 10;
+  final double PI = 3.14;
+
+  public static void main(String[] args) {
+    Main myObj = new Main();
+    myObj.x = 50;  // Error: cannot assign value to a final variable
+    System.out.println(myObj.x);  // Outputs 10
+  }
+}
+```
+
+#### `static` Modifier
+
+- Static methods can be called without creating an object.
+
+```java
+public class Main {
+  // Static method
+  static void myStaticMethod() {
+    System.out.println("Static methods can be called without creating objects");
+  }
+
+  // Public method
+  public void myPublicMethod() {
+    System.out.println("Public methods must be called by creating objects");
+  }
+
+  public static void main(String[] args) {
+    myStaticMethod();  // Call static method
+    Main myObj = new Main();
+    myObj.myPublicMethod();  // Call public method
+  }
+}
+```
+
+#### `abstract` Modifier
+
+- Abstract methods are declared without a body and implemented by subclasses.
+
+```java
+// Abstract class
+abstract class Main {
+  public String fname = "John";
+  public int age = 24;
+  public abstract void study(); // Abstract method
+}
+
+// Subclass inheriting from Main
+class Student extends Main {
+  public int graduationYear = 2018;
+  public void study() {  // Implementing abstract method
+    System.out.println("Studying all day long");
+  }
+}
+
+// Main class to test
+class Second {
+  public static void main(String[] args) {
+    Student myObj = new Student();
+    System.out.println("Name: " + myObj.fname);
+    System.out.println("Age: " + myObj.age);
+    System.out.println("Graduation Year: " + myObj.graduationYear);
+    myObj.study();  // Call abstract method
+  }
+}
+```
+
+---
+
+### Key Points:
+
+- **public**, **private**, **protected**: Used to define access control.
+- **final**, **static**, **abstract**: Define behavior of classes, methods, and attributes.
+- Abstract methods **must** be implemented by subclasses.
+  Here’s a cheatsheet for **Java Encapsulation** in markdown format:
+
+````md
+## Java Encapsulation Cheatsheet
+
+### What is Encapsulation?
+
+- **Encapsulation** ensures that sensitive data is hidden from users.
+- Achieved by:
+  1. Declaring class variables/attributes as `private`.
+  2. Providing **public** `get` and `set` methods to access and update private variables.
+
+---
+
+### 1. Get and Set Methods
+
+#### Syntax:
+
+- **Getter** method: Returns the value of a private variable.
+- **Setter** method: Updates the value of a private variable.
+
+```java
+public class Person {
+  private String name; // private = restricted access
+
+  // Getter
+  public String getName() {
+    return name;
+  }
+
+  // Setter
+  public void setName(String newName) {
+    this.name = newName;
+  }
+}
+```
+````
+
+#### Explanation:
+
+- `getName()`: Returns the value of `name`.
+- `setName(String newName)`: Sets the value of `name` using the `this` keyword to refer to the current object.
+
+---
+
+### 2. Accessing Private Variables
+
+- **Private variables** cannot be accessed directly from outside the class. Example:
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    Person myObj = new Person();
+    myObj.name = "John";  // Error: name has private access in Person
+    System.out.println(myObj.name);  // Error
+  }
+}
+```
+
+#### Correct Way: Use Getter and Setter
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    Person myObj = new Person();
+    myObj.setName("John");  // Set the value of name
+    System.out.println(myObj.getName());  // Outputs: John
+  }
+}
+```
+
+---
+
+### 3. Why Use Encapsulation?
+
+- **Better control** of class attributes and methods.
+- Class attributes can be made:
+  - **Read-only**: If only the `get` method is provided.
+  - **Write-only**: If only the `set` method is provided.
+- **Flexibility**: Changing part of the code without affecting other parts.
+- **Increased security** of data.
+
+---
+
+### Key Points:
+
+- Use `private` to hide variables from direct access.
+- Use `get` and `set` methods to control access and modification of private variables.
+- Encapsulation provides control, flexibility, and security.
+
+```
+
+You can save this as a `.md` file for quick reference!
+```
