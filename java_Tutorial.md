@@ -772,7 +772,6 @@ class Second {
 - Abstract methods **must** be implemented by subclasses.
   Here’s a cheatsheet for **Java Encapsulation** in markdown format:
 
-````md
 ## Java Encapsulation Cheatsheet
 
 ### What is Encapsulation?
@@ -806,7 +805,6 @@ public class Person {
   }
 }
 ```
-````
 
 #### Explanation:
 
@@ -859,3 +857,572 @@ public class Main {
 - Use `private` to hide variables from direct access.
 - Use `get` and `set` methods to control access and modification of private variables.
 - Encapsulation provides control, flexibility, and security.
+
+Here's a summarized cheatsheet for Java Packages in markdown format:
+
+## Java Packages & API Cheatsheet
+
+### Overview
+
+- **Packages** group related classes to avoid name conflicts and improve code maintainability.
+- Two types:
+  - **Built-in Packages**: Prewritten classes from the Java API.
+  - **User-defined Packages**: Custom-created packages.
+
+### Importing Packages
+
+#### Syntax
+
+```java
+import package.name.Class;   // Import a single class
+import package.name.*;       // Import all classes from a package
+```
+
+#### Example: Importing a Single Class
+
+```java
+import java.util.Scanner;   // Scanner class for user input
+
+Scanner myObj = new Scanner(System.in);
+String userName = myObj.nextLine();
+```
+
+#### Example: Importing an Entire Package
+
+```java
+import java.util.*;   // Imports all utility classes in java.util
+```
+
+### Java API
+
+- A library of prewritten classes, available with the Java Development Environment.
+- Components for **input handling**, **database programming**, and more.
+- Full API documentation: [Oracle Java API](https://docs.oracle.com/javase/8/docs/api/).
+
+---
+
+### User-defined Packages
+
+#### Package Creation
+
+1. Define the package:
+
+```java
+package mypack;   // Package declaration
+class MyPackageClass {
+    public static void main(String[] args) {
+        System.out.println("This is my package!");
+    }
+}
+```
+
+2. Save the file as `MyPackageClass.java`.
+3. Compile the package:
+
+```bash
+javac -d . MyPackageClass.java   // -d specifies the destination
+```
+
+#### Running the Package
+
+- After compiling, a directory named **mypack** will be created.
+- To run the compiled class:
+
+```bash
+java mypack.MyPackageClass
+```
+
+#### Output
+
+```
+This is my package!
+```
+
+## Java Inheritance Cheatsheet
+
+### Overview
+
+- **Inheritance**: Enables one class to inherit fields and methods from another.
+- Two categories:
+  - **Superclass (parent)**: The class being inherited from.
+  - **Subclass (child)**: The class that inherits from another class.
+
+### Key Terms
+
+- **`extends`**: Used to inherit from a superclass.
+
+---
+
+### Example: Basic Inheritance
+
+```java
+class Vehicle {
+  protected String brand = "Ford";   // Vehicle attribute
+  public void honk() {               // Vehicle method
+    System.out.println("Tuut, tuut!");
+  }
+}
+
+class Car extends Vehicle {
+  private String modelName = "Mustang";  // Car attribute
+  public static void main(String[] args) {
+    Car myCar = new Car();         // Create an object of Car
+    myCar.honk();                  // Call inherited method from Vehicle
+    System.out.println(myCar.brand + " " + myCar.modelName);  // Access attributes
+  }
+}
+```
+
+#### Output:
+
+```
+Tuut, tuut!
+Ford Mustang
+```
+
+---
+
+### Protected Modifier
+
+- **`protected`**: Allows access within the same package and by subclasses.
+- If `brand` in the `Vehicle` class was **private**, the `Car` class couldn't access it.
+
+---
+
+### Why Use Inheritance?
+
+- **Code Reusability**: Reuse fields and methods of an existing class in a new class.
+- Facilitates easier maintenance and flexibility.
+
+---
+
+### The `final` Keyword
+
+- **`final` class**: Prevents other classes from inheriting from it.
+- Example:
+
+  ```java
+  final class Vehicle {
+    // code
+  }
+
+  class Car extends Vehicle {   // This will cause an error
+    // code
+  }
+  ```
+
+- **Error Output**:
+  ```
+  Main.java:9: error: cannot inherit from final Vehicle
+  class Car extends Vehicle {
+                        ^
+  1 error
+  ```
+
+---
+
+### Java Polymorphism Cheatsheet
+
+### Overview
+
+- **Polymorphism**: "Many forms" – Allows methods to perform different tasks in classes that share inheritance.
+- **Key Concept**: A single method behaves differently based on the object it is called on.
+- Relies on **inheritance** to achieve method overriding in subclasses.
+
+---
+
+### Example: Polymorphism in Action
+
+#### Superclass: `Animal`
+
+```java
+class Animal {
+  public void animalSound() {
+    System.out.println("The animal makes a sound");
+  }
+}
+```
+
+#### Subclass: `Pig`
+
+```java
+class Pig extends Animal {
+  public void animalSound() {
+    System.out.println("The pig says: wee wee");
+  }
+}
+```
+
+#### Subclass: `Dog`
+
+```java
+class Dog extends Animal {
+  public void animalSound() {
+    System.out.println("The dog says: bow wow");
+  }
+}
+```
+
+---
+
+### Using Polymorphism
+
+#### Main Method Example
+
+```java
+class Main {
+  public static void main(String[] args) {
+    Animal myAnimal = new Animal();  // Create an Animal object
+    Animal myPig = new Pig();        // Create a Pig object
+    Animal myDog = new Dog();        // Create a Dog object
+
+    myAnimal.animalSound();   // Outputs: The animal makes a sound
+    myPig.animalSound();      // Outputs: The pig says: wee wee
+    myDog.animalSound();      // Outputs: The dog says: bow wow
+  }
+}
+```
+
+#### Output:
+
+```
+The animal makes a sound
+The pig says: wee wee
+The dog says: bow wow
+```
+
+---
+
+### Key Takeaways
+
+- **Method Overriding**: Subclasses override the `animalSound()` method of the superclass.
+- **Single Method, Multiple Forms**: The same method behaves differently based on the object type (Pig, Dog, etc.).
+- **Inheritance & Polymorphism** work hand-in-hand to provide flexibility and reuse in code.
+
+---
+
+### Advantages
+
+- **Code Reusability**: Use a single method for different tasks across subclasses.
+- **Maintainability**: Reduces code duplication and improves scalability.
+
+Here's a summarized cheatsheet for Java Inner Classes in markdown format:
+
+# Java Inner Classes Cheatsheet
+
+## Overview
+
+- **Inner Classes**: A class within another class. Used to group classes that logically belong together, improving code readability and maintainability.
+
+---
+
+## Types of Inner Classes
+
+1. **Regular Inner Class**: A non-static class inside another class.
+2. **Private Inner Class**: An inner class with private access.
+3. **Static Inner Class**: Can be accessed without creating an instance of the outer class.
+
+---
+
+## Example: Regular Inner Class
+
+### Accessing an Inner Class
+
+```java
+class OuterClass {
+  int x = 10;
+
+  class InnerClass {
+    int y = 5;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass myOuter = new OuterClass();
+    OuterClass.InnerClass myInner = myOuter.new InnerClass();
+    System.out.println(myInner.y + myOuter.x);  // Outputs 15 (5 + 10)
+  }
+}
+```
+
+---
+
+## Private Inner Class
+
+- An inner class can be declared **private** to restrict access from outside classes.
+
+```java
+class OuterClass {
+  private class InnerClass {
+    int y = 5;
+  }
+}
+```
+
+- Trying to access a private inner class from an outer class will cause an error.
+
+---
+
+## Static Inner Class
+
+- A **static inner class** can be accessed without creating an instance of the outer class.
+
+### Example:
+
+```java
+class OuterClass {
+  static class InnerClass {
+    int y = 5;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass.InnerClass myInner = new OuterClass.InnerClass();
+    System.out.println(myInner.y);  // Outputs 5
+  }
+}
+```
+
+- **Note**: Static inner classes do not have access to non-static members of the outer class.
+
+---
+
+## Accessing Outer Class from Inner Class
+
+- Inner classes can access the members (attributes and methods) of their outer class.
+
+### Example:
+
+```java
+class OuterClass {
+  int x = 10;
+
+  class InnerClass {
+    public int myInnerMethod() {
+      return x;
+    }
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass myOuter = new OuterClass();
+    OuterClass.InnerClass myInner = myOuter.new InnerClass();
+    System.out.println(myInner.myInnerMethod());  // Outputs 10
+  }
+}
+```
+
+---
+
+## Key Points
+
+- **Regular Inner Classes**: Require an instance of the outer class to be instantiated.
+- **Private Inner Classes**: Cannot be accessed outside the outer class.
+- **Static Inner Classes**: Can be accessed without the outer class but cannot access non-static members.
+- **Inner Class Access to Outer Class**: Inner classes can access outer class members.
+
+Here is a summarized cheatsheet for **Java Abstract Classes and Methods** in markdown format:
+
+## Java Abstract Classes and Methods Cheatsheet
+
+## Overview
+
+- **Abstraction**: Hides unnecessary details and shows only essential information to the user.
+- Can be achieved through:
+  - **Abstract classes**
+  - **Interfaces** (discussed in next chapter)
+
+---
+
+## Abstract Class
+
+- **Abstract class**: A restricted class that **cannot be instantiated** (cannot create objects from it).
+- Must be inherited by a subclass to use its abstract methods.
+
+### Example:
+
+````java
+abstract class Animal {
+  public abstract void animalSound();  // Abstract method (no body)
+  public void sleep() {                // Regular method
+    System.out.println("Zzz");
+  }
+}
+
+---
+
+## Abstract Method
+
+- **Abstract method**: Declared in an abstract class **without a body**.
+- The body of the method is provided in the subclass.
+
+### Example:
+
+```java
+abstract class Animal {
+  public abstract void animalSound();  // Abstract method
+  public void sleep() {
+    System.out.println("Zzz");
+  }
+}
+
+class Pig extends Animal {
+  public void animalSound() {          // Body of abstract method
+    System.out.println("The pig says: wee wee");
+  }
+}
+````
+
+---
+
+## Using Abstract Classes and Methods
+
+- Abstract classes **cannot be instantiated** directly:
+
+  ```java
+  Animal myObj = new Animal();  // Error! Cannot create an object of abstract class
+  ```
+
+- To use an abstract class, it **must be inherited**:
+
+  ```java
+  class Pig extends Animal {
+    public void animalSound() {
+      System.out.println("The pig says: wee wee");
+    }
+  }
+
+  class Main {
+    public static void main(String[] args) {
+      Pig myPig = new Pig();  // Create an object of Pig (subclass)
+      myPig.animalSound();    // Calls abstract method
+      myPig.sleep();          // Calls regular method
+    }
+  }
+  ```
+
+---
+
+## Key Points
+
+- **Abstract class**: Cannot create objects from it, used for inheritance.
+- **Abstract method**: Must be overridden in the subclass, no method body in the abstract class.
+- An abstract class can have **both abstract and non-abstract methods**.
+- **Concrete classes** (subclasses) provide implementation for abstract methods.
+
+Here’s the summarized **Java Interfaces** cheatsheet in markdown format:
+
+# Java Interfaces Cheatsheet
+
+## Overview
+
+- **Interface**: A completely abstract class used to group related methods **without bodies**.
+- Interfaces **achieve abstraction** and **multiple inheritance** in Java.
+
+---
+
+## Defining an Interface
+
+- An interface only contains **method declarations** and **constants**.
+
+### Example:
+
+```java
+// Define interface
+interface Animal {
+  public void animalSound(); // No method body
+  public void sleep();       // No method body
+}
+```
+
+---
+
+## Implementing an Interface
+
+- Use the `implements` keyword to implement an interface in a class.
+- The implementing class **must provide bodies** for all the interface methods.
+
+### Example:
+
+```java
+// Implementing the interface
+class Pig implements Animal {
+  public void animalSound() {
+    System.out.println("The pig says: wee wee");
+  }
+  public void sleep() {
+    System.out.println("Zzz");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Pig myPig = new Pig();    // Create Pig object
+    myPig.animalSound();      // Call interface method
+    myPig.sleep();            // Call interface method
+  }
+}
+```
+
+---
+
+## Key Points on Interfaces
+
+- **Cannot instantiate**: Interfaces cannot be used to create objects.
+- **Method bodies**: Methods in an interface do not have bodies; they are provided by the implementing class.
+- **Must override**: All interface methods **must be overridden** in the implementing class.
+- **Default modifiers**:
+  - Methods are **public** and **abstract** by default.
+  - Attributes are **public**, **static**, and **final** by default.
+- **No constructor**: Interfaces cannot have constructors since they cannot be instantiated.
+
+---
+
+## Multiple Interfaces
+
+- A class can implement multiple interfaces, which helps in **multiple inheritance**.
+
+### Example:
+
+```java
+// Define interfaces
+interface FirstInterface {
+  public void myMethod();     // Interface method
+}
+
+interface SecondInterface {
+  public void myOtherMethod(); // Interface method
+}
+
+// Implement both interfaces
+class DemoClass implements FirstInterface, SecondInterface {
+  public void myMethod() {
+    System.out.println("Some text..");
+  }
+  public void myOtherMethod() {
+    System.out.println("Some other text...");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    DemoClass myObj = new DemoClass();
+    myObj.myMethod();
+    myObj.myOtherMethod();
+  }
+}
+```
+
+---
+
+## Why Use Interfaces?
+
+1. **Achieve abstraction**: Hide implementation details and only expose necessary methods.
+2. **Multiple inheritance**: Unlike classes, interfaces allow a class to inherit from multiple sources.
+
+```
+
+```
