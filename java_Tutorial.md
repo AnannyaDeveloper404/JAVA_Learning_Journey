@@ -1422,7 +1422,166 @@ class Main {
 
 1. **Achieve abstraction**: Hide implementation details and only expose necessary methods.
 2. **Multiple inheritance**: Unlike classes, interfaces allow a class to inherit from multiple sources.
+   Here’s a cheat sheet for Java Enums in markdown format:
+
+## Java Enums Cheat Sheet
+
+### What is an Enum?
+
+- A **special "class"** to represent a **group of constants** (unchangeable variables).
+- Created using the `enum` keyword.
+
+### Basic Syntax
+
+```java
+enum Level {
+  LOW,
+  MEDIUM,
+  HIGH
+}
+Level myVar = Level.MEDIUM;
+```
+
+### Enum inside a Class
+
+- Enums can be nested within classes.
+
+```java
+public class Main {
+  enum Level {
+    LOW,
+    MEDIUM,
+    HIGH
+  }
+  public static void main(String[] args) {
+    Level myVar = Level.MEDIUM;
+    System.out.println(myVar); // Output: MEDIUM
+  }
+}
+```
+
+### Enum in a Switch Statement
+
+- Enums can be used in `switch` statements.
+
+```java
+enum Level {
+  LOW,
+  MEDIUM,
+  HIGH
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Level myVar = Level.MEDIUM;
+    switch (myVar) {
+      case LOW:
+        System.out.println("Low level");
+        break;
+      case MEDIUM:
+        System.out.println("Medium level");
+        break;
+      case HIGH:
+        System.out.println("High level");
+        break;
+    }
+  }
+}
+// Output: Medium level
+```
+
+### Loop Through an Enum
+
+- Use the `values()` method to get all constants in an enum.
+
+```java
+for (Level myVar : Level.values()) {
+  System.out.println(myVar);
+}
+// Output:
+// LOW
+// MEDIUM
+// HIGH
+```
+
+### Enum Attributes and Methods
+
+- Enums can have **attributes and methods** but **constants are `public`, `static`, and `final`**.
+- **Cannot create objects** of enums or extend other classes (can implement interfaces).
+
+### When to Use Enums?
+
+- Use enums when values are **fixed** and won’t change (e.g., **days, colors, card suits**).
 
 ```
 
+This cheat sheet provides a concise summary of the key concepts and usage of enums in Java.
+```
+
+Here’s a cheat sheet for Java Wrapper Classes in markdown format:
+
+## Java Wrapper Classes Cheat Sheet
+
+### What are Wrapper Classes?
+
+- Wrapper classes allow using **primitive data types as objects**.
+- Useful in Collections (e.g., `ArrayList`) where **only objects** can be stored.
+
+#### Primitive Types vs Wrapper Classes
+
+| Primitive Type | Wrapper Class |
+| -------------- | ------------- |
+| `byte`         | `Byte`        |
+| `short`        | `Short`       |
+| `int`          | `Integer`     |
+| `long`         | `Long`        |
+| `float`        | `Float`       |
+| `double`       | `Double`      |
+| `boolean`      | `Boolean`     |
+| `char`         | `Character`   |
+
+### Creating Wrapper Objects
+
+- Use the wrapper class instead of the primitive type.
+
+```java
+Integer myInt = 5;
+Double myDouble = 5.99;
+Character myChar = 'A';
+
+System.out.println(myInt);    // Output: 5
+System.out.println(myDouble);  // Output: 5.99
+System.out.println(myChar);    // Output: A
+```
+
+### Wrapper Methods
+
+#### Value Methods
+
+- Methods to get the primitive value from a wrapper object:
+  - `intValue()`, `doubleValue()`, `charValue()`, etc.
+
+```java
+Integer myInt = 5;
+System.out.println(myInt.intValue());  // Output: 5
+```
+
+#### `toString()` Method
+
+- Converts a wrapper object to a `String`.
+
+```java
+Integer myInt = 100;
+String myString = myInt.toString();
+System.out.println(myString.length());  // Output: 3
+```
+
+### Why Use Wrapper Classes?
+
+- Needed when **only objects** are accepted (e.g., Collections).
+- Provides **methods for data manipulation** and **type conversion**.
+
+```
+
+This cheat sheet captures the essentials of Java Wrapper Classes, making it easy to understand and reference.
 ```
