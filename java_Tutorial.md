@@ -1585,3 +1585,143 @@ System.out.println(myString.length());  // Output: 3
 
 This cheat sheet captures the essentials of Java Wrapper Classes, making it easy to understand and reference.
 ```
+
+Here’s the **Java Exceptions** cheatsheet in markdown format:
+
+## Java Exceptions Cheatsheet
+
+### Overview
+
+- **Exceptions**: Errors that occur during execution, stopping the program unless handled.
+- Common exception types: `ArrayIndexOutOfBoundsException`, `ArithmeticException`, `FileNotFoundException`, `SecurityException`, etc.
+
+---
+
+### Try and Catch
+
+- Use `try` to define a block of code to test for errors.
+- Use `catch` to define code to handle errors if they occur.
+
+#### Syntax:
+
+```java
+try {
+  // Code to try
+} catch (Exception e) {
+  // Code to handle error
+}
+```
+
+#### Example:
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    try {
+      int[] myNumbers = {1, 2, 3};
+      System.out.println(myNumbers[10]); // Error!
+    } catch (Exception e) {
+      System.out.println("Something went wrong.");
+    }
+  }
+}
+```
+
+#### Output:
+
+```
+Something went wrong.
+```
+
+---
+
+### Finally
+
+- The `finally` block executes **regardless of the result** of the `try-catch`.
+
+#### Example:
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    try {
+      int[] myNumbers = {1, 2, 3};
+      System.out.println(myNumbers[10]);
+    } catch (Exception e) {
+      System.out.println("Something went wrong.");
+    } finally {
+      System.out.println("The 'try catch' is finished.");
+    }
+  }
+}
+```
+
+#### Output:
+
+```
+Something went wrong.
+The 'try catch' is finished.
+```
+
+---
+
+### Throw Keyword
+
+- The `throw` statement allows creating custom exceptions with a specified type.
+
+#### Example:
+
+Throw an exception if `age` is below 18:
+
+```java
+public class Main {
+  static void checkAge(int age) {
+    if (age < 18) {
+      throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+    } else {
+      System.out.println("Access granted - You are old enough!");
+    }
+  }
+
+  public static void main(String[] args) {
+    checkAge(15); // Triggers exception
+  }
+}
+```
+
+#### Output:
+
+```
+Exception in thread "main" java.lang.ArithmeticException: Access denied - You must be at least 18 years old.
+```
+
+If `age` was set to 20:
+
+```java
+checkAge(20);
+```
+
+#### Output:
+
+```
+Access granted - You are old enough!
+```
+
+---
+
+### Exercise
+
+Complete the code to handle exceptions:
+
+```java
+try {
+  int[] myNumbers = {1, 2, 3};
+  System.out.println(myNumbers[10]);
+} catch (Exception e) {
+  System.out.println("Something went wrong.");
+}
+```
+
+```
+
+```
