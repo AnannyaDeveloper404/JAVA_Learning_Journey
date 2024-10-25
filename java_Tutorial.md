@@ -1108,7 +1108,7 @@ The dog says: bow wow
 
 Here's a summarized cheatsheet for Java Inner Classes in markdown format:
 
-# Java Inner Classes Cheatsheet
+## Java Inner Classes Cheatsheet
 
 ## Overview
 
@@ -1274,7 +1274,6 @@ class Pig extends Animal {
     System.out.println("The pig says: wee wee");
   }
 }
-````
 
 ---
 
@@ -1284,7 +1283,7 @@ class Pig extends Animal {
 
   ```java
   Animal myObj = new Animal();  // Error! Cannot create an object of abstract class
-  ```
+````
 
 - To use an abstract class, it **must be inherited**:
 
