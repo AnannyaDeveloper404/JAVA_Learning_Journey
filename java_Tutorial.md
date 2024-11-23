@@ -1721,6 +1721,275 @@ try {
 }
 ```
 
+## Java Constructors
+
+A constructor in Java is a special method that is used to initialize objects. The constructor is called when an object of a class is created.
+
+```java
+public class Main {
+  int x;  // Create a class attribute
+
+  // Create a class constructor for the Main class
+  public Main() {
+    x = 5;  // Set the initial value for the class attribute x
+  }
+
+  public static void main(String[] args) {
+    Main myObj = new Main(); // Create an object of class Main (This will call the constructor)
+    System.out.println(myObj.x); // Print the value of x
+  }
+}
+
+// Outputs 5
+```
+
+## Access Modifier
+
+For attributes and methods, you can use the one of the following:
+
+| Modifier     | Description                                                                                                                                                                                                                                                                                         |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| final        | Attributes and methods cannot be overridden/modified                                                                                                                                                                                                                                                |
+| static       | Attributes and methods belongs to the class, rather than an object                                                                                                                                                                                                                                  |
+| abstract     | Can only be used in an abstract class, and can only be used on methods. The method does not have a body, for example abstract void run();. The body is provided by the subclass (inherited from). You will learn more about inheritance and abstraction in the Inheritance and Abstraction chapters |
+| transient    | Attributes and methods are skipped when serializing the object containing them                                                                                                                                                                                                                      |
+| synchronized | Methods can only be accessed by one thread at a time                                                                                                                                                                                                                                                |
+| volatile     | The value of an attribute is not cached thread-locally, and is always read from the "main memory                                                                                                                                                                                                    |
+
+### static method and public method
+
+```java
+public class Main {
+  // Static method
+  static void myStaticMethod() {
+    System.out.println("Static methods can be called without creating objects");
+  }
+
+  // Public method
+  public void myPublicMethod() {
+    System.out.println("Public methods must be called by creating objects");
+  }
+
+  // Main method
+  public static void main(String[] args) {
+    myStaticMethod(); // Call the static method
+
+    Main myObj = new Main(); // Create an object of MyClass
+    myObj.myPublicMethod(); // Call the public method
+  }
+}
+
+```
+
+```
+output:
+
+Static methods can be called without creating objects
+Public methods must be called by creating objects
+```
+
+### abstract method
+
+```java
+// Code from filename: Main.java
+// abstract class
+abstract class Main {
+  public String fname = "John";
+  public int age = 24;
+  public abstract void study(); // abstract method
+}
+
+// Subclass (inherit from Main)
+class Student extends Main {
+  public int graduationYear = 2018;
+  public void study() { // the body of the abstract method is provided here
+    System.out.println("Studying all day long");
+  }
+}
+// End code from filename: Main.java
+
+// Code from filename: Second.java
+class Second {
+  public static void main(String[] args) {
+    // create an object of the Student class (which inherits attributes and methods from Main)
+    Student myObj = new Student();
+
+    System.out.println("Name: " + myObj.fname);
+    System.out.println("Age: " + myObj.age);
+    System.out.println("Graduation Year: " + myObj.graduationYear);
+    myObj.study(); // call abstract method
+  }
+}
+```
+
+### final modifier
+
+```java
+public class Main {
+  final int x = 10;
+  final double PI = 3.14;
+
+  public static void main(String[] args) {
+    Main myObj = new Main();
+    myObj.x = 50; // will generate an error: cannot assign a value to a final variable
+    myObj.PI = 25; // will generate an error: cannot assign a value to a final variable
+    System.out.println(myObj.x);
+  }
+}
+```
+
+## What is Encapsulation?
+
+Encapsulation ensures that **sensitive data** is hidden from users.
+
+### How to Achieve Encapsulation:
+
+1. **Declare class variables/attributes as `private`.**
+2. **Provide public `get` and `set` methods** to access and update private variables.
+
+---
+
+## Get and Set Methods
+
+- **`get` Method:** Returns the variable value.
+- **`set` Method:** Sets the variable value.
+
+### Syntax:
+
+Method names start with `get` or `set` followed by the variable name with the first letter in uppercase.
+
+---
+
+### Example:
+
+```java
+public class Person {
+  private String name; // Private variable
+
+  // Getter
+  public String getName() {
+    return name;
+  }
+
+  // Setter
+  public void setName(String newName) {
+    this.name = newName;
+  }
+}
+```
+
+---
+
+### Using Encapsulation:
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    Person myObj = new Person();
+    myObj.setName("John"); // Set the value of name
+    System.out.println(myObj.getName()); // Get the value of name
+  }
+}
+// Outputs: John
+```
+
+---
+
+## Why Use Encapsulation?
+
+1. **Better control** over class attributes and methods.
+2. **Flexible:** Changes in one part of the code don’t affect others.
+3. **Increased security** of data.
+4. Can make attributes **read-only** (only `get`) or **write-only** (only `set`).
+
+````markdown
+# Java Packages
+
+## What are Java Packages?
+
+Packages in Java are used to group related classes, helping to:
+
+1. Avoid **name conflicts**.
+2. Improve code **readability** and **maintainability**
+
+### Types of Packages:
+
+1. **Built-in Packages:** Provided by Java API.
+2. **User-defined Packages:** Custom packages created by developers.
+
+---
+
+## Built-in Packages
+
+Java API provides prewritten classes for functionalities like input handling, database programming, etc.
+
+### Importing Built-in Packages:
+
+- Import a single class:
+  ```java
+  import package.name.Class;
+  ```
+````
+
+- Import all classes from a package:
+  ```java
+  import package.name.*;
+  ```
+
+### Example: Importing `Scanner` Class
+
+```java
+import java.util.Scanner;
+
+class MyClass {
+  public static void main(String[] args) {
+    Scanner myObj = new Scanner(System.in);
+    System.out.println("Enter username:");
+    String userName = myObj.nextLine();
+    System.out.println("Username is: " + userName);
+  }
+}
+```
+
+---
+
+## User-defined Packages
+
+### Steps to Create a Package:
+
+1. Use the `package` keyword:
+   ```java
+   package mypack;
+   class MyPackageClass {
+     public static void main(String[] args) {
+       System.out.println("This is my package!");
+     }
+   }
+   ```
+2. Save the file as `MyPackageClass.java`.
+
+3. Compile the file and create the package:
+
+   ```bash
+   javac -d . MyPackageClass.java
+   ```
+
+   - **`-d` flag**: Specifies the destination folder for the package.
+   - A new folder `mypack` will be created.
+
+4. Run the compiled package:
+   ```bash
+   java mypack.MyPackageClass
+   ```
+   **Output:**
+   ```
+   This is my package!
+   ```
+
+### Notes:
+
+- Package names should be written in **lowercase** to avoid conflicts with class names.
+
 ```
 
 ```
