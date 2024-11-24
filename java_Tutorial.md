@@ -183,7 +183,7 @@ static int plusMethodInt(int x, int y) {
 static double plusMethodDouble(double x, double y) {
   return x + y;
 }
-///finished
+
 public static void main(String[] args) {
   int myNum1 = plusMethodInt(8, 5);
   double myNum2 = plusMethodDouble(4.3, 6.26);
@@ -548,6 +548,7 @@ What does OOP stand for?
 - **Static methods** can be called directly without an object.
 - **Public methods** require an object to be called.
 - Use the dot `.` operator to access methods and attributes from an object.
+<!-- Finished -->
 
 ## Java Constructors Cheatsheet
 
@@ -1989,6 +1990,394 @@ class MyClass {
 ### Notes:
 
 - Package names should be written in **lowercase** to avoid conflicts with class names.
+
+## Java Inner Classes
+
+In Java, you can nest classes (a class within a class) to group related classes together, making your code more readable and maintainable.
+
+---
+
+## Types of Inner Classes
+
+### 1. **Regular Inner Class**
+
+To access an inner class, create an object of the outer class, then create an object of the inner class.
+
+#### Example:
+
+```java
+class OuterClass {
+  int x = 10;
+
+  class InnerClass {
+    int y = 5;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass myOuter = new OuterClass();
+    OuterClass.InnerClass myInner = myOuter.new InnerClass();
+    System.out.println(myInner.y + myOuter.x); // Outputs 15 (5 + 10)
+  }
+}
+```
+
+---
+
+### 2. **Private Inner Class**
+
+An inner class can be declared `private` or `protected`, restricting its access from outside the outer class.
+
+#### Example:
+
+```java
+class OuterClass {
+  int x = 10;
+
+  private class InnerClass {
+    int y = 5;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass myOuter = new OuterClass();
+    OuterClass.InnerClass myInner = myOuter.new InnerClass(); // Error: InnerClass is private
+  }
+}
+```
+
+#### Error:
+
+```
+Main.java:13: error: OuterClass.InnerClass has private access in OuterClass
+```
+
+---
+
+### 3. **Static Inner Class**
+
+A `static` inner class can be accessed without creating an object of the outer class. However, it cannot access non-static members of the outer class.
+
+#### Example:
+
+```java
+class OuterClass {
+  int x = 10;
+
+  static class InnerClass {
+    int y = 5;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass.InnerClass myInner = new OuterClass.InnerClass();
+    System.out.println(myInner.y); // Outputs 5
+  }
+}
+```
+
+---
+
+### 4. **Access Outer Class Members From Inner Class**
+
+An inner class can directly access members (both fields and methods) of its outer class.
+
+#### Example:
+
+```java
+class OuterClass {
+  int x = 10;
+
+  class InnerClass {
+    public int myInnerMethod() {
+      return x; // Accessing outer class member
+    }
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    OuterClass myOuter = new OuterClass();
+    OuterClass.InnerClass myInner = myOuter.new InnerClass();
+    System.out.println(myInner.myInnerMethod()); // Outputs 10
+  }
+}
+```
+
+---
+
+## Key Points:
+
+1. Inner classes can be **regular**, **private**, or **static**.
+2. **Regular and private inner classes** require an outer class instance for access.
+3. **Static inner classes** can be accessed without an outer class instance but cannot access non-static members of the outer class.
+4. Inner classes can access the outer class's members directly.
+
+# Abstract Classes and Methods
+
+## What is Data Abstraction?
+
+Data abstraction is the process of hiding implementation details while showing only essential information to the user. In Java, abstraction can be achieved through:
+
+- **Abstract Classes**
+- **Interfaces** (discussed in the next chapter)
+
+---
+
+## Key Concepts of Abstract Classes and Methods
+
+### 1. **Abstract Class**
+
+- A class declared with the `abstract` keyword.
+- **Cannot be instantiated** directly (i.e., you cannot create objects of an abstract class).
+- Can contain both:
+  - **Abstract methods** (without a body).
+  - **Regular methods** (with a body).
+
+#### Syntax:
+
+```java
+abstract class Animal {
+  public abstract void animalSound(); // Abstract method
+  public void sleep() {               // Regular method
+    System.out.println("Zzz");
+  }
+}
+```
+
+---
+
+### 2. **Abstract Method**
+
+- Declared within an abstract class using the `abstract` keyword.
+- **Does not have a body**—the body is provided by the subclass inheriting the abstract class.
+
+---
+
+### 3. **Inheritance with Abstract Classes**
+
+To use an abstract class, it must be inherited by another class. Use the `extends` keyword for inheritance.
+
+#### Example:
+
+```java
+// Abstract class
+abstract class Animal {
+  public abstract void animalSound(); // Abstract method
+  public void sleep() {               // Regular method
+    System.out.println("Zzz");
+  }
+}
+
+// Subclass (inherits from Animal)
+class Pig extends Animal {
+  public void animalSound() {
+    System.out.println("The pig says: wee wee");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Pig myPig = new Pig(); // Create a Pig object
+    myPig.animalSound();   // Outputs: The pig says: wee wee
+    myPig.sleep();         // Outputs: Zzz
+  }
+}
+```
+
+---
+
+### 4. **Why Use Abstract Classes and Methods?**
+
+- **Security**: Hide implementation details and show only the necessary features.
+- Ensure that certain methods must be implemented by subclasses, enforcing a design contract.
+
+---
+
+### Key Points:
+
+1. Abstract classes **cannot be instantiated** directly.
+   - Example:
+     ```java
+     Animal myObj = new Animal(); // Error: Animal is abstract
+     ```
+2. Subclasses must provide a body for all abstract methods from the abstract class.
+3. Abstraction can also be achieved using **interfaces** (discussed in the next chapter).
+
+# Java ArrayList
+
+The `ArrayList` class in Java, part of the `java.util` package, is a resizable array that allows elements to be added or removed dynamically, unlike standard arrays with fixed sizes.
+
+---
+
+## Key Features of ArrayList
+
+1. **Dynamic Resizing**: Size adjusts as elements are added/removed.
+2. **Flexible Syntax**: Easier to manipulate compared to arrays.
+
+---
+
+## Creating an ArrayList
+
+```java
+import java.util.ArrayList;
+
+ArrayList<String> cars = new ArrayList<String>();
+```
+
+---
+
+## Common Operations
+
+### 1. **Adding Items**
+
+- Use the `add()` method:
+  ```java
+  cars.add("Volvo");
+  cars.add("BMW");
+  ```
+- Insert at a specific position:
+  ```java
+  cars.add(0, "Mazda");
+  ```
+
+### 2. **Accessing Items**
+
+- Use the `get()` method:
+  ```java
+  cars.get(0);
+  ```
+
+### 3. **Modifying Items**
+
+- Use the `set()` method:
+  ```java
+  cars.set(0, "Opel");
+  ```
+
+### 4. **Removing Items**
+
+- Remove a specific item:
+  ```java
+  cars.remove(0);
+  ```
+- Clear all elements:
+  ```java
+  cars.clear();
+  ```
+
+### 5. **Finding Size**
+
+- Use the `size()` method:
+  ```java
+  cars.size();
+  ```
+
+---
+
+## Looping Through an ArrayList
+
+- **For Loop**:
+  ```java
+  for (int i = 0; i < cars.size(); i++) {
+    System.out.println(cars.get(i));
+  }
+  ```
+- **For-Each Loop**:
+  ```java
+  for (String car : cars) {
+    System.out.println(car);
+  }
+  ```
+
+---
+
+## Using Other Types in ArrayList
+
+- ArrayLists store objects. For primitive types, use wrapper classes:
+  - `Integer` for `int`, `Boolean` for `boolean`, etc.
+
+#### Example:
+
+```java
+ArrayList<Integer> myNumbers = new ArrayList<Integer>();
+myNumbers.add(10);
+myNumbers.add(15);
+```
+
+---
+
+## Sorting an ArrayList
+
+- Use the `Collections.sort()` method from the `java.util.Collections` package.
+
+#### Example: Sort Strings
+
+```java
+import java.util.Collections;
+
+Collections.sort(cars);
+```
+
+#### Example: Sort Integers
+
+```java
+Collections.sort(myNumbers);
+```
+
+---
+
+## Complete Example
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+  public static void main(String[] args) {
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+
+    // Add an element
+    cars.add(0, "Toyota");
+
+    // Modify an element
+    cars.set(1, "Tesla");
+
+    // Remove an element
+    cars.remove(2);
+
+    // Sort the ArrayList
+    Collections.sort(cars);
+
+    // Loop through the ArrayList
+    for (String car : cars) {
+      System.out.println(car);
+    }
+
+    // Find size
+    System.out.println("Size: " + cars.size());
+  }
+}
+```
+
+---
+
+## Advantages of ArrayList
+
+- **Dynamic Resizing**: Automatically grows/shrinks.
+- **Rich Functionality**: Provides methods for common operations.
+- **Flexibility**: Supports generic types and easy integration.
+
+---
+
+For more advanced sorting or functionality, explore the `java.util.Collections` and `java.util.stream` packages.
 
 ```
 
