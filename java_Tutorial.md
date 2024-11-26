@@ -548,7 +548,6 @@ What does OOP stand for?
 - **Static methods** can be called directly without an object.
 - **Public methods** require an object to be called.
 - Use the dot `.` operator to access methods and attributes from an object.
-<!-- Finished -->
 
 ## Java Constructors Cheatsheet
 
@@ -771,7 +770,8 @@ class Second {
 - **public**, **private**, **protected**: Used to define access control.
 - **final**, **static**, **abstract**: Define behavior of classes, methods, and attributes.
 - Abstract methods **must** be implemented by subclasses.
-  Here’s a cheatsheet for **Java Encapsulation** in markdown format:
+Here’s a cheatsheet for **Java Encapsulation** in markdown format:
+<!-- Finished -->
 
 ## Java Encapsulation Cheatsheet
 
