@@ -2377,8 +2377,409 @@ public class Main {
 
 ---
 
-For more advanced sorting or functionality, explore the `java.util.Collections` and `java.util.stream` packages.
+# Java Topics Notes
 
+## 1. Java Interface
+
+### Key Points:
+
+- A Java interface is a reference type, similar to a class, that can contain abstract methods, constants, default methods, static methods, and nested types.
+- It is a way to achieve abstraction in Java.
+- Interfaces are implemented by classes and extended by other interfaces.
+
+### Syntax:
+
+```java
+interface Animal {
+    void makeSound(); // abstract method
+}
+class Dog implements Animal {
+    public void makeSound() {
+        System.out.println("Bark");
+    }
+}
 ```
 
+### Use Cases:
+
+- To achieve multiple inheritance.
+- To define a contract that implementing classes must adhere to.
+
+---
+
+## 2. Java Enums
+
+### Key Points:
+
+- Enums are special data types that enable a variable to be a set of predefined constants.
+- Enums are implicitly final and extend `java.lang.Enum`.
+
+### Syntax:
+
+```java
+enum Day {
+    MONDAY, TUESDAY, WEDNESDAY
+}
+class Main {
+    public static void main(String[] args) {
+        Day today = Day.MONDAY;
+        System.out.println(today);
+    }
+}
 ```
+
+### Use Cases:
+
+- Representing a fixed set of constants (e.g., days of the week, directions).
+
+---
+
+## 3. Java User Input
+
+### Key Points:
+
+- Java provides the `Scanner` class for getting user input from the console.
+- Input can be of different data types: String, int, double, etc.
+
+### Syntax:
+
+```java
+import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        System.out.println("Hello, " + name);
+    }
+}
+```
+
+### Use Cases:
+
+- Interactive programs requiring user inputs.
+
+---
+
+## 4. Java Date
+
+### Key Points:
+
+- The `java.util.Date` and `java.time` packages handle date and time.
+- Newer `java.time` classes like `LocalDate`, `LocalTime`, and `LocalDateTime` are more powerful.
+
+### Syntax:
+
+```java
+import java.time.LocalDate;
+class Main {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.now();
+        System.out.println(date);
+    }
+}
+```
+
+### Use Cases:
+
+- Working with dates and times for scheduling or tracking.
+
+---
+
+## 5. Java ArrayList
+
+### Key Points:
+
+- Part of the `java.util` package.
+- Dynamic array that can grow and shrink in size.
+
+### Syntax:
+
+```java
+import java.util.ArrayList;
+class Main {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        System.out.println(list);
+    }
+}
+```
+
+### Use Cases:
+
+- Storing dynamic lists of objects.
+
+---
+
+## 6. Java LinkedList
+
+### Key Points:
+
+- A doubly-linked list implementation of the List interface.
+- Provides faster insertion and deletion compared to ArrayList.
+
+### Syntax:
+
+```java
+import java.util.LinkedList;
+class Main {
+    public static void main(String[] args) {
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Item 1");
+        list.add("Item 2");
+        System.out.println(list);
+    }
+}
+```
+
+### Use Cases:
+
+- Manipulating large datasets with frequent insertions/deletions.
+
+---
+
+## 7. Java List Sorting
+
+### Key Points:
+
+- The `Collections.sort()` method is used for sorting lists.
+- Supports custom sorting using `Comparator`.
+
+### Syntax:
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(1);
+        list.add(2);
+        Collections.sort(list);
+        System.out.println(list);
+    }
+}
+```
+
+### Use Cases:
+
+- Organising data in ascending/descending order.
+
+---
+
+## 8. Java HashMap
+
+### Key Points:
+
+- Part of the `java.util` package.
+- A data structure that stores key-value pairs.
+
+### Syntax:
+
+```java
+import java.util.HashMap;
+class Main {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        System.out.println(map);
+    }
+}
+```
+
+### Use Cases:
+
+- Associative data storage (e.g., dictionaries).
+
+---
+
+## 9. Java HashSet
+
+### Key Points:
+
+- Implements the Set interface and uses a hash table for storage.
+- Does not allow duplicate elements.
+
+### Syntax:
+
+```java
+import java.util.HashSet;
+class Main {
+    public static void main(String[] args) {
+        HashSet<String> set = new HashSet<>();
+        set.add("Apple");
+        set.add("Banana");
+        System.out.println(set);
+    }
+}
+```
+
+### Use Cases:
+
+- Storing unique elements.
+
+---
+
+## 10. Java Iterator
+
+### Key Points:
+
+- The `Iterator` interface is used to iterate over collections.
+
+### Syntax:
+
+```java
+import java.util.ArrayList;
+import java.util.Iterator;
+class Main {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
+```
+
+### Use Cases:
+
+- Traversing collection elements one by one.
+
+---
+
+## 11. Java Wrapper Classes
+
+### Key Points:
+
+- Converts primitive types into objects (e.g., int to Integer).
+- Used for data structures like Collections which require objects.
+
+### Syntax:
+
+```java
+class Main {
+    public static void main(String[] args) {
+        Integer num = 10; // Autoboxing
+        int n = num; // Unboxing
+        System.out.println(n);
+    }
+}
+```
+
+### Use Cases:
+
+- Wrapping primitive types for data structures.
+
+---
+
+## 12. Java Exceptions
+
+### Key Points:
+
+- Mechanism to handle runtime errors.
+- Two types: checked and unchecked exceptions.
+
+### Syntax:
+
+```java
+class Main {
+    public static void main(String[] args) {
+        try {
+            int divide = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        }
+    }
+}
+```
+
+### Use Cases:
+
+- Ensuring program stability.
+
+---
+
+## 13. Java RegEx
+
+### Key Points:
+
+- Regular expressions for pattern matching.
+- `java.util.regex` package contains the classes for this.
+
+### Syntax:
+
+```java
+import java.util.regex.*;
+class Main {
+    public static void main(String[] args) {
+        Pattern pattern = Pattern.compile("a*b");
+        Matcher matcher = pattern.matcher("aaab");
+        System.out.println(matcher.matches());
+    }
+}
+```
+
+### Use Cases:
+
+- Validating inputs, searching, and text processing.
+
+---
+
+## 14. Java Threads
+
+### Key Points:
+
+- Multithreading allows a program to execute multiple threads simultaneously.
+- Threads can be created by extending `Thread` or implementing `Runnable`.
+
+### Syntax:
+
+```java
+class Main extends Thread {
+    public void run() {
+        System.out.println("Thread running");
+    }
+    public static void main(String[] args) {
+        Main thread = new Main();
+        thread.start();
+    }
+}
+```
+
+### Use Cases:
+
+- Performing background tasks.
+
+---
+
+## 15. Java Lambda
+
+### Key Points:
+
+- Introduced in Java 8 for functional programming.
+- Simplifies writing inline implementations of functional interfaces.
+
+### Syntax:
+
+```java
+import java.util.ArrayList;
+class Main {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.forEach(item -> System.out.println(item));
+    }
+}
+```
+
+### Use Cases:
+
+- Streamlining code for anonymous functions.
