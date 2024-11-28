@@ -2400,6 +2400,34 @@ class Dog implements Animal {
 }
 ```
 
+```java
+interface FirstInterface {
+  public void myMethod(); // interface method
+}
+
+interface SecondInterface {
+  public void myOtherMethod(); // interface method
+}
+
+class DemoClass implements FirstInterface, SecondInterface {
+  public void myMethod() {
+    System.out.println("Some text..");
+  }
+  public void myOtherMethod() {
+    System.out.println("Some other text...");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    DemoClass myObj = new DemoClass();
+    myObj.myMethod();
+    myObj.myOtherMethod();
+  }
+}
+
+```
+
 ### Use Cases:
 
 - To achieve multiple inheritance.
@@ -2426,6 +2454,40 @@ class Main {
         System.out.println(today);
     }
 }
+```
+
+```java
+enum Level {
+  LOW,
+  MEDIUM,
+  HIGH
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Level myVar = Level.MEDIUM;
+
+    switch(myVar) {
+      case LOW:
+        System.out.println("Low level");
+        break;
+      case MEDIUM:
+         System.out.println("Medium level");
+        break;
+      case HIGH:
+        System.out.println("High level");
+        break;
+    }
+  }
+}
+```
+
+```
+
+The output will be:
+
+Medium level
+
 ```
 
 ### Use Cases:
